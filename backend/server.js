@@ -10,8 +10,16 @@ app.get("/", (req, res) => {
   res.send("API rodando 🚀");
 });
 
+let bebes = [];
+
 app.get("/bebes", (req, res) => {
-  res.json({ mensagem: "Lista de bebês 👶" });
+  res.json(bebes);
+});
+
+app.post("/bebes", (req, res) => {
+  const novoBebe = req.body;
+  bebes.push(novoBebe);
+  res.json({ sucesso: true });
 });
 
 const PORT = process.env.PORT || 3000;
