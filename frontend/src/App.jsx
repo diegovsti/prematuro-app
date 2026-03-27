@@ -9,7 +9,8 @@ export default function App() {
   const [bebes, setBebes] = useState([])
   const [nome, setNome] = useState('')
 
-  const API = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+  // ✅ URL CORRIGIDA DO RENDER
+  const API = 'https://prematuro-app.onrender.com'
 
   useEffect(() => {
     carregarBebes()
@@ -21,14 +22,14 @@ export default function App() {
       const data = await res.json()
       setBebes(data)
     } catch (e) {
-      console.error(e)
+      console.error('Erro ao carregar bebês:', e)
     }
   }
 
   function calcular() {
     setErro('')
 
-    if (!dataNascimento || semanas < 20 || semanas > 42) {
+    if (!dataNascimento || Number(semanas) < 20 || Number(semanas) > 42) {
       setErro('Idade gestacional inválida')
       return
     }
@@ -49,13 +50,17 @@ export default function App() {
   async function salvar() {
     if (!nome) return
 
-    await fetch(`${API}/bebes`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, dataNascimento, semanas })
-    })
+    try {
+      await fetch(`${API}/bebes`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, dataNascimento, semanas })
+      })
 
-    carregarBebes()
+      carregarBebes()
+    } catch (e) {
+      console.error('Erro ao salvar:', e)
+    }
   }
 
   function gerarPDF() {
@@ -139,6 +144,7 @@ export default function App() {
     </div>
   )
 }
+
 const styles = {
   container: {
     minHeight: '100vh',
