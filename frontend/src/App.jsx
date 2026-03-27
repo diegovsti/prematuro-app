@@ -156,7 +156,7 @@ const styles = {
   },
   card: {
     width: '100%',
-    maxWidth: 370,
+    maxWidth: 420,
     padding: 24,
     borderRadius: 16,
     background: 'rgba(255,255,255,0.05)',
@@ -176,7 +176,10 @@ const styles = {
     borderRadius: 8,
     border: '1px solid #334155',
     background: '#0f172a',
-    color: '#fff'
+    color: '#fff',
+    width: 100%,
+    fontSize: 16,
+    minHeight: 44
   },
   btnPrimary: {
     padding: 12,
