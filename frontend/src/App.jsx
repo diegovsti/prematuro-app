@@ -171,6 +171,7 @@ const styles = {
     background: '#0f172a',
     color: '#fff',
     width: '100%',
+    maxWidth: 400,
     fontSize: 16,
     minHeight: 44
   },
