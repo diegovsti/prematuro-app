@@ -7,7 +7,7 @@ export default function App() {
   const [resultado, setResultado] = useState(null)
   const [erro, setErro] = useState('')
   const [bebes, setBebes] = useState([])
- // const [nome, setNome] = useState('')
+  const [nome, setNome] = useState('')
 
   // ✅ URL CORRIGIDA DO RENDER
   const API = 'https://prematuro-app.onrender.com'
@@ -78,6 +78,8 @@ export default function App() {
         <h2 style={styles.title}>👶 Idade Corrigida</h2>
 
         <div style={styles.form}>
+
+          <input placeholder="Nome do bebê" value={nome} onChange={e => setNome(e.target.value)} style={styles.input} />
 
           <input
             type="date"
