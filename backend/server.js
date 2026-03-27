@@ -1,21 +1,21 @@
-// backend/server.js
-const express = require('express')
-const cors = require('cors')
+import express from "express";
+import cors from "cors";
 
-const app = express()
-app.use(cors())
-app.use(express.json())
+const app = express();
 
-let bebes = []
+app.use(cors());
+app.use(express.json());
 
-app.get('/bebes', (req, res) => {
-  res.json(bebes)
-})
+app.get("/", (req, res) => {
+  res.send("API rodando 🚀");
+});
 
-app.post('/bebes', (req, res) => {
-  const bebe = req.body
-  bebes.push(bebe)
-  res.json({ ok: true })
-})
+app.get("/bebes", (req, res) => {
+  res.json({ mensagem: "Lista de bebês 👶" });
+});
 
-app.listen(3000, () => console.log('API rodando em 3000'))
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Servidor rodando na porta " + PORT);
+});
